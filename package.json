@@ -4,13 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
   "devDependencies": {
-    "typescript": "^2.7.1"
+    "@types/react": "^16.0.38",
+    "@types/react-dom": "^16.0.4",
+    "source-map-loader": "^0.2.3",
+    "ts-loader": "^3.5.0",
+    "typescript": "^2.7.1",
+    "webpack": "^3.11.0"
   }
 }
