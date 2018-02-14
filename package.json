@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "dev": "webpack-dev-server --config webpack.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc"
   },
@@ -21,6 +22,7 @@
     "source-map-loader": "^0.2.3",
     "ts-loader": "^3.5.0",
     "typescript": "^2.7.1",
-    "webpack": "^3.11.0"
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
   }
 }
