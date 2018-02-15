@@ -1,16 +1,14 @@
 {
   "name": "autocomplete-demo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Tech demo of autocomplete.",
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --config webpack.config.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "author": "https://github.com/Gizzz",
   "license": "MIT",
   "dependencies": {
     "react": "^16.2.0",
