@@ -3,7 +3,9 @@
   "extends": ["tslint:recommended", "tslint-react"],
   "rules": {
     "quotemark": [true, "single", "jsx-double"],
-    "no-consecutive-blank-lines": false
+    "no-consecutive-blank-lines": false,
+    "member-access": false,
+    "no-console": false
   },
   "rulesDirectory": [],
   "jsRules": {}
