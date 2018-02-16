@@ -12,10 +12,12 @@
   "author": "https://github.com/Gizzz",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.4",
     "source-map-loader": "^0.2.3",
