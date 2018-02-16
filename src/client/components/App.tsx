@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 
 interface IAppState {
   term: string;
@@ -14,7 +15,11 @@ class App extends React.Component<{}, IAppState> {
   }
 
   handleBtnClick = () => {
-    console.log(`term is ${this.state.term}`);
+    // console.log(`term is ${this.state.term}`);
+
+    axios.get('/proxy/tst')
+      .then(console.log)
+      .catch(console.log);
   }
 
   render() {

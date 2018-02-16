@@ -1,5 +1,5 @@
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: "./src/client/index.tsx",
   output: {
     filename: "bundle.js",
     path: __dirname + "/dist",
@@ -26,5 +26,8 @@ module.exports = {
     compress: true,
     historyApiFallback: true,
     hot: false,
+    proxy: {
+      '/proxy': 'http://localhost:9000',
+    },
   },
 };
