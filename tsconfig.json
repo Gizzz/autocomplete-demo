@@ -4,8 +4,6 @@
     "module": "es2015",
     "moduleResolution": "node",
     "jsx": "react",
-    "rootDir": "./src/client",
-    "outDir": "./dist",
     "sourceMap": true,
 
     "strictNullChecks": true,
@@ -19,8 +17,8 @@
   ],
   "exclude": [
     "node_modules",
-    "src/**/*.spec.*",
-    "src/**/*.test.*"
+    "src/client/**/*.spec.*",
+    "src/client/**/*.test.*"
   ]
 
     /* Basic Options */
