@@ -6,6 +6,8 @@ import * as express from 'express';
 import * as dotenv from 'dotenv';
 import axios from 'axios';
 
+import logResponse from './logResponse';
+
 dotenv.config();
 
 const key = process.env.GOOGLE_PLACES_API_KEY;
@@ -21,33 +23,20 @@ app.get('/proxy*', (req, res) => {
     .then((result) => {
       res
         .status(result.status)
-        .send(result.statusText);
+        .send(result.data);
 
-      console.log(`Request succeeded.`);
-      console.log(`Status: ${result.status} - ${result.statusText}`);
-      console.log(`Url: ${forwardedUrlWithKey}`);
-      // Long version:
-      // console.log(`Data: \n${result.data}\n`);
-      console.log(`/**************************/\n`);
+      logResponse(`success`, result, forwardedUrlWithKey);
     })
     .catch((error) => {
       res
         .status(error.response.status)
         .send(error.response.statusText);
 
-      console.log(`Request failed.`);
-      console.log(`Status: ${error.response.status} - ${error.response.statusText}`);
-      console.log(`Url: ${forwardedUrlWithKey}`);
-      // Long version:
-      // console.log(error);
-      console.log(`/**************************/\n`);
+      logResponse(`error`, error, forwardedUrlWithKey);
     });
 });
 
-// app settings and bootstrap
-
 app.set('port', (process.env.PORT || 9000));
-
 app.listen(app.get('port'), () => {
   console.log('Google Places API - proxy is running on port', app.get('port'));
   console.log(`=================================================\n`);
