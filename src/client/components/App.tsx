@@ -15,10 +15,14 @@ class App extends React.Component<{}, IAppState> {
   }
 
   handleBtnClick = () => {
-    // console.log(`term is ${this.state.term}`);
+    const term = this.state.term;
+    const url = `/proxy/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50000&keyword=${term}`;
 
-    axios.get('/proxy/tst')
-      .then(console.log)
+    axios.get(url)
+      .then((result) => {
+        console.log('results', result.data.results);
+        console.log('status', result.data.status);
+      })
       .catch(console.log);
   }
 
