@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --config webpack.config.js --progress",
+    "proxy": "ts-node --project proxy.tsconfig.json src/proxy/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts*'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc"
@@ -13,18 +14,23 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/dotenv": "^4.0.2",
+    "@types/express": "^4.11.1",
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.4",
     "source-map-loader": "^0.2.3",
     "ts-loader": "^3.5.0",
+    "ts-node": "^4.1.0",
     "tslint": "^5.9.1",
     "tslint-react": "^3.5.1",
-    "typescript": "^2.7.1",
+    "typescript": "^2.7.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   }

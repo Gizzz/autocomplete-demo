@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src/proxy/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/proxy/**/*.spec.*",
+    "src/proxy/**/*.test.*"
+  ]
+}
