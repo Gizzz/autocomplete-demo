@@ -1,6 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
-import { throttle, Cancelable } from 'lodash';
+import throttle from 'lodash.throttle';
+import { Cancelable } from 'lodash';
+
 
 interface IAppState {
   term: string;
