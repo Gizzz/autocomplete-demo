@@ -40,7 +40,7 @@ class App extends React.Component<{}, IAppState> {
         .catch(console.log);
     };
 
-    this.searchCompletions_throttled = throttle(this.searchCompletions, 500);
+    this.searchCompletions_throttled = throttle(this.searchCompletions, 500, { leading: false });
   }
 
   componentWillUnmount() {
