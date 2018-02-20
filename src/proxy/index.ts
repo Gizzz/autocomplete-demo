@@ -4,6 +4,7 @@
 
 import * as express from 'express';
 import * as dotenv from 'dotenv';
+import * as circularJSON from 'circular-json';
 import axios from 'axios';
 
 import logResponse from './logResponse';
@@ -28,9 +29,10 @@ app.get('/proxy*', (req, res) => {
       logResponse(`success`, result, forwardedUrlWithKey);
     })
     .catch((error) => {
-      res
-        .status(error.response.status)
-        .send(error.response.statusText);
+      const serializedError = circularJSON.stringify(error);
+
+      res.setHeader('Content-Type', 'application/json');
+      res.status(error.response.status).send(serializedError);
 
       logResponse(`error`, error, forwardedUrlWithKey);
     });
