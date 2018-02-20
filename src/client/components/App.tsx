@@ -1,17 +1,34 @@
 import * as React from 'react';
 import axios from 'axios';
+import { throttle, Cancelable } from 'lodash';
 
 interface IAppState {
   term: string;
 }
 
 class App extends React.Component<{}, IAppState> {
+  logTerm: () => void;
+  logTerm_throttled: (() => void) & Cancelable;
+
   state = {
     term: '',
   };
 
+  constructor(props) {
+    super(props);
+    this.logTerm = (() => { console.log(this.state.term); });
+    this.logTerm_throttled = throttle(this.logTerm, 500);
+  }
+
+  componentWillUnmount() {
+    this.logTerm_throttled.cancel();
+  }
+
   handleInputChange = (e) => {
-    this.setState({ term: e.target.value });
+    this.setState(
+      { term: e.target.value },
+      () => { this.logTerm_throttled(); },
+    );
   }
 
   handleBtnClick = () => {
