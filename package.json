@@ -2,6 +2,11 @@
   "name": "autocomplete-demo",
   "version": "1.0.0",
   "description": "Tech demo of autocomplete.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gizzz/autocomplete-demo.git"
+  },
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --config webpack.config.js --progress",
@@ -12,8 +17,6 @@
   "pre-commit": [
     "lint"
   ],
-  "author": "https://github.com/Gizzz",
-  "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",
     "circular-json": "^0.5.1",
