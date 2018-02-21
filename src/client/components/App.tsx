@@ -1,8 +1,8 @@
 import * as React from 'react';
 import axios from 'axios';
+
 import debounce from 'lodash.debounce';
 import { Cancelable } from 'lodash';
-
 
 interface IAppState {
   term: string;
