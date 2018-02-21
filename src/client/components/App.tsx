@@ -75,7 +75,7 @@ class App extends React.Component<{}, IAppState> {
     if (this.state.autocompleteResults.length !== 0) {
       autocompleteResultsJsx = this.state.autocompleteResults.map((result: any): JSX.Element => {
         return (
-          <li key={result.id}>{result.description}</li>
+          <li key={result.description}>{result.description}</li>
         );
       });
     }
