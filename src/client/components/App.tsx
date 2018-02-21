@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
-import throttle from 'lodash.throttle';
+import debounce from 'lodash.debounce';
 import { Cancelable } from 'lodash';
 
 
@@ -17,21 +17,21 @@ class App extends React.Component<{}, IAppState> {
     searchResults: [],
   };
 
-  searchCompletions_throttled: (() => void) & Cancelable;
+  searchCompletions_debounced: (() => void) & Cancelable;
 
   constructor(props) {
     super(props);
-    this.searchCompletions_throttled = throttle(this.searchCompletions, 500, { leading: false });
+    this.searchCompletions_debounced = debounce(this.searchCompletions, 500);
   }
 
   componentWillUnmount() {
-    this.searchCompletions_throttled.cancel();
+    this.searchCompletions_debounced.cancel();
   }
 
   handleInputChange = (e) => {
     this.setState(
       { term: e.target.value },
-      () => { this.searchCompletions_throttled(); },
+      () => { this.searchCompletions_debounced(); },
     );
   }
 
