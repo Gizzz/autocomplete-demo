@@ -17,29 +17,10 @@ class App extends React.Component<{}, IAppState> {
     searchResults: [],
   };
 
-  searchCompletions: () => void;
   searchCompletions_throttled: (() => void) & Cancelable;
 
   constructor(props) {
     super(props);
-
-    this.searchCompletions = () => {
-      const term = this.state.term;
-      // tslint:disable-next-line:max-line-length
-      const url = `/proxy/maps/api/place/queryautocomplete/json?location=-33.8670522,151.1957362&radius=50000&input=${term}`;
-
-      if (term.trim() === ``) {
-        this.setState({ autocompleteResults: [] });
-        return;
-      }
-
-      axios.get(url)
-        .then((result) => {
-          this.setState({ autocompleteResults: result.data.predictions });
-        })
-        .catch(console.log);
-    };
-
     this.searchCompletions_throttled = throttle(this.searchCompletions, 500, { leading: false });
   }
 
@@ -66,6 +47,23 @@ class App extends React.Component<{}, IAppState> {
     axios.get(url)
       .then((result) => {
         this.setState({ searchResults: result.data.results });
+      })
+      .catch(console.log);
+  }
+
+  searchCompletions = () => {
+    const term = this.state.term;
+    // tslint:disable-next-line:max-line-length
+    const url = `/proxy/maps/api/place/queryautocomplete/json?location=-33.8670522,151.1957362&radius=50000&input=${term}`;
+
+    if (term.trim() === ``) {
+      this.setState({ autocompleteResults: [] });
+      return;
+    }
+
+    axios.get(url)
+      .then((result) => {
+        this.setState({ autocompleteResults: result.data.predictions });
       })
       .catch(console.log);
   }
