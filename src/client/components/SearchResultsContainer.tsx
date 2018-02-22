@@ -9,12 +9,20 @@ interface ISearchResultsContainerProps {
 
 interface ISearchResultsContainerState {
   searchResults: any[];
+  isFetching: boolean;
+  error: any;
 }
 
 class SearchResultsContainer extends React.Component<ISearchResultsContainerProps, ISearchResultsContainerState> {
   state = {
     searchResults: [],
+    isFetching: false,
+    error: null,
   };
+
+  componentDidMount() {
+    this.fetchResultsForTerm(this.props.term);
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.term !== this.props.term) {
@@ -30,16 +38,29 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
       return;
     }
 
+    this.setState({ isFetching: true, error: null });
+
     axios.get(url)
       .then((result) => {
-        this.setState({ searchResults: result.data.results });
+        this.setState({
+          searchResults: result.data.results,
+          isFetching: false,
+        });
       })
-      .catch(console.log);
+      .catch((error) => {
+        this.setState({ error, isFetching: false });
+        console.log(error);
+      });
   }
 
   render() {
     return (
-      <SearchResults searchResults={this.state.searchResults} />
+      <SearchResults
+        term={this.props.term}
+        searchResults={this.state.searchResults}
+        isFetching={this.state.isFetching}
+        error={this.state.error}
+      />
     );
   }
 }

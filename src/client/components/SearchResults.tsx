@@ -1,31 +1,45 @@
 import * as React from 'react';
 
-const SearchResults = ({ searchResults }) => {
-  let searchResultsJsx: JSX.Element[] | null = null;
+interface ISearchResultsProps {
+  term: string;
+  searchResults: any[];
+  isFetching: boolean;
+  error: any;
+}
 
-  if (searchResults.length !== 0) {
-    searchResultsJsx = searchResults.map((result: any): JSX.Element => {
-      return (
-        <li key={result.id}>{result.name}</li>
-      );
-    });
+const SearchResults = ({ term, searchResults, isFetching, error }: ISearchResultsProps) => {
+  if (error) {
+    const message = error.message ? error.message : `Something went wrong.`;
+
+    return (
+      <>
+        <h2>Search results:</h2>
+        <p>Error: {message}</p>
+      </>
+    );
   }
 
-  // const isTermEmpty = this.props.term.trim() === '';
+  const searchResultsJsx: JSX.Element[] = searchResults.map((result: any): JSX.Element => {
+    return (
+      <li key={result.id}>{result.name}</li>
+    );
+  });
+
+  const hasResultsToShow = searchResultsJsx.length > 0;
+  const isTermEmpty = term.trim() === ``;
 
   return (
     <>
       <h2>Search results:</h2>
-      {/* {
-        searchResultsJsx
-          ? <ul>{searchResultsJsx}</ul>
-          : isTermEmpty
-            ? null
-            : <p>No results.</p>
-      } */}
-      <ul>
-        {searchResultsJsx}
-      </ul>
+      {
+        isFetching
+          ? <p>Loading data...</p>
+          : hasResultsToShow
+            ? <ul>{searchResultsJsx}</ul>
+            : isTermEmpty
+              ? null
+              : <p>No results.</p>
+      }
     </>
   );
 };
