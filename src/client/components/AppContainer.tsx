@@ -5,18 +5,19 @@ import debounce from 'lodash.debounce';
 import { Cancelable } from 'lodash';
 
 import App from './App';
+import SearchResultsContainer from './SearchResultsContainer';
 
 interface IAppContainerState {
   term: string;
+  confirmedTerm: string;
   autocompleteResults: any[];
-  searchResults: any[];
 }
 
 class AppContainer extends React.Component<{}, IAppContainerState> {
   state = {
     term: '',
+    confirmedTerm: '',
     autocompleteResults: [],
-    searchResults: [],
   };
 
   searchCompletions_debounced: (() => void) & Cancelable;
@@ -40,19 +41,7 @@ class AppContainer extends React.Component<{}, IAppContainerState> {
   }
 
   handleSearch = () => {
-    const term = this.state.term;
-    const url = `/proxy/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50000&keyword=${term}`;
-
-    if (term.trim() === ``) {
-      this.setState({ searchResults: [] });
-      return;
-    }
-
-    axios.get(url)
-      .then((result) => {
-        this.setState({ searchResults: result.data.results });
-      })
-      .catch(console.log);
+    this.setState((prevState) => ({ confirmedTerm: prevState.term }));
   }
 
   searchCompletions = () => {
@@ -74,13 +63,15 @@ class AppContainer extends React.Component<{}, IAppContainerState> {
 
   render() {
     return (
-      <App
-        term={this.state.term}
-        autocompleteResults={this.state.autocompleteResults}
-        searchResults={this.state.searchResults}
-        onTermChange={this.handleTermChange}
-        onSearch={this.handleSearch}
-      />
+      <>
+        <App
+          term={this.state.term}
+          autocompleteResults={this.state.autocompleteResults}
+          onTermChange={this.handleTermChange}
+          onSearch={this.handleSearch}
+        />
+        <SearchResultsContainer term={this.state.confirmedTerm} />
+      </>
     );
   }
 }
