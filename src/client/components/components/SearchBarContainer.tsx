@@ -13,12 +13,14 @@ interface ISearchBarContainerProps {
 interface ISearchBarContainerState {
   term: string;
   autocompleteResults: any[];
+  lastRequestTimestamp: number;
 }
 
 class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISearchBarContainerState> {
   state = {
     term: ``,
     autocompleteResults: [],
+    lastRequestTimestamp: 0,
   };
 
   searchCompletions_debounced: (() => void) & Cancelable;
@@ -50,6 +52,10 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
     // tslint:disable-next-line:max-line-length
     const url = `/proxy/maps/api/place/queryautocomplete/json?location=-33.8670522,151.1957362&radius=50000&input=${term}`;
 
+    const currentRequestTimestamp = Date.now();
+    this.setState({ lastRequestTimestamp: currentRequestTimestamp });
+
+    // empty check is written after the timestapm to prevent pending request to overwrite its (empty check) result
     if (term.trim() === ``) {
       this.setState({ autocompleteResults: [] });
       return;
@@ -57,6 +63,8 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
 
     axios.get(url)
       .then((result) => {
+        if (this.state.lastRequestTimestamp !== currentRequestTimestamp) { return; }
+
         this.setState({ autocompleteResults: result.data.predictions });
       })
       .catch(console.log);
