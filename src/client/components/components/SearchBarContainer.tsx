@@ -55,7 +55,7 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
     const currentRequestTimestamp = Date.now();
     this.setState({ lastRequestTimestamp: currentRequestTimestamp });
 
-    // empty check is written after the timestapm to prevent pending request to overwrite its (empty check) result
+    // empty check is placed after the timestapm to prevent pending request to overwrite its result
     if (term.trim() === ``) {
       this.setState({ autocompleteResults: [] });
       return;
