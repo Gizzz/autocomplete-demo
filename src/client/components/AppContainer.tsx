@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import SearchBarContainer from './SearchBarContainer';
-import SearchResultsContainer from './SearchResultsContainer';
+import SearchBarContainer from './components/SearchBarContainer';
+import SearchResultsContainer from './components/SearchResultsContainer';
 
 interface IAppContainerState {
   confirmedTerm: string;
