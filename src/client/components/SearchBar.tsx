@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-interface IAppProps {
+interface ISearchBarProps {
   term: string;
   autocompleteResults: any[];
   onTermChange: (newTerm: string) => void;
   onSearch: () => void;
 }
 
-class App extends React.Component<IAppProps, {}> {
+class SearchBar extends React.Component<ISearchBarProps, {}> {
   handleInputChange = (e) => {
     this.props.onTermChange(e.target.value);
   }
@@ -42,4 +42,4 @@ class App extends React.Component<IAppProps, {}> {
   }
 }
 
-export default App;
+export default SearchBar;
