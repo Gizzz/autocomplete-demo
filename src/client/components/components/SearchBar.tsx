@@ -12,6 +12,11 @@ class SearchBar extends React.Component<ISearchBarProps, {}> {
     this.props.onTermChange(e.target.value);
   }
 
+  handleInputKeydown = (e) => {
+    const isEnterPressed = e.nativeEvent.key.toLowerCase() === `enter`;
+    if (isEnterPressed) { this.props.onSearch(); }
+  }
+
   handleSearchBtnClick = () => {
     this.props.onSearch();
   }
@@ -30,7 +35,12 @@ class SearchBar extends React.Component<ISearchBarProps, {}> {
     return (
       <div className="app">
         <h1>Autocomplete demo</h1>
-        <input type="text" value={this.props.term} onChange={this.handleInputChange} />
+        <input
+          type="text"
+          value={this.props.term}
+          onChange={this.handleInputChange}
+          onKeyDown={this.handleInputKeydown}
+        />
         <button onClick={this.handleSearchBtnClick}>Search!</button>
 
         <h2>Autocomplete results:</h2>
