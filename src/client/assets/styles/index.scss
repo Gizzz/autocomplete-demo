@@ -1,0 +1,33 @@
+@import '_variables';
+@import '_mixins';
+
+@import 'vendor/normalize.css';
+@import 'customResets.scss';
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Roboto-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Roboto-Bold.woff) format('woff');
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  font-size: 16px;
+	line-height: 1;
+}
