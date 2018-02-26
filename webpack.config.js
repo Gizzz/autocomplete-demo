@@ -1,26 +1,30 @@
 module.exports = {
-  entry: "./src/client/index.tsx",
+  entry: './src/client/index.tsx',
   output: {
-    filename: "bundle.js",
-    path: __dirname + "/dist",
+    filename: 'bundle.js',
+    path: __dirname + '/dist',
     publicPath: '/',
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: ['.ts', '.tsx', '.js', '.json']
   },
   module: {
     rules: [
+      // enable this if have some trouble with debugging typescript
+      // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
       {
         test: /\.tsx?$/,
-        loader: "ts-loader"
+        loader: 'ts-loader',
       },
-      // enable this if have some trouble with debugging
-      // { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
     ]
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   devServer: {
-    contentBase: __dirname + "/dist",
+    contentBase: __dirname + '/dist',
     port: 3000,
     https: false,
     compress: true,
