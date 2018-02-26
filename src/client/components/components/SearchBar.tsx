@@ -33,8 +33,7 @@ class SearchBar extends React.Component<ISearchBarProps, {}> {
     }
 
     return (
-      <div className="app">
-        <h1>Autocomplete demo</h1>
+      <>
         <input
           type="text"
           value={this.props.term}
@@ -47,7 +46,7 @@ class SearchBar extends React.Component<ISearchBarProps, {}> {
         <ul>
           {autocompleteResultsJsx}
         </ul>
-      </div>
+      </>
     );
   }
 }
