@@ -36,6 +36,7 @@ class SearchBar extends React.Component<ISearchBarProps, {}> {
       <>
         <input
           type="text"
+          autoFocus={true}
           value={this.props.term}
           onChange={this.handleInputChange}
           onKeyDown={this.handleInputKeydown}
