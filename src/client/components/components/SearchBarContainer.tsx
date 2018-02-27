@@ -45,6 +45,14 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
 
   handleSearch = () => {
     this.props.onSearch(this.state.term);
+    this.resetAutocompleteResults();
+  }
+
+  resetAutocompleteResults = () => {
+    this.setState({
+      autocompleteResults: [],
+      lastRequestTimestamp: Date.now(),
+    });
   }
 
   searchCompletions = () => {
@@ -77,6 +85,7 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
         autocompleteResults={this.state.autocompleteResults}
         onTermChange={this.handleTermChange}
         onSearch={this.handleSearch}
+        onResetResults={this.resetAutocompleteResults}
       />
     );
   }
