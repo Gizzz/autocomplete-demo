@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/Roboto-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url(../fonts/Roboto-Bold.woff) format('woff');
+}
+
+html {
+  font-family: 'Roboto', 'Noto', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+
+// App block; wait for more styles and move to own file
+
+.app {
+  h1 {
+    text-align: center;
+  }
+}

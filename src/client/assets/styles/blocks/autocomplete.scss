@@ -1,0 +1,64 @@
+.autocomplete {
+  $input-height: 44px;
+  position: relative;
+
+  &__search-bar {
+    $button-width: 50px;
+
+    position: relative;
+    width: 584px;
+    margin: auto;
+    text-align: center;
+
+    input[type=text] {
+      width: 100%;
+      height: $input-height;
+      border-width: 0px;
+      border-radius: 3px;
+      padding-left: 10px;
+      padding-right: $button-width + 10px;
+      box-shadow:
+        0 2px 2px 0 rgba(0,0,0,0.16),
+        0 0 0 1px rgba(0,0,0,0.08);
+      transition: box-shadow 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
+
+      &:hover,
+      &:focus {
+        box-shadow:
+        0 3px 8px 0 rgba(0,0,0,0.2),
+        0 0 0 1px rgba(0,0,0,0.08);
+      }
+    }
+
+    button {
+      position: absolute;
+      right: 0;
+      width: $button-width;
+      height: $input-height;
+      border-width: 0px;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      background-color:rgb(221, 221, 221);
+    }
+  }
+
+  &__search-bar__completions {
+    position: absolute;
+    left: 0;
+    top: $input-height;
+    width: 584px;
+    background-color: #fff;
+    box-shadow:
+        0 2px 2px 0 rgba(0,0,0,0.16),
+        0 0 0 1px rgba(0,0,0,0.08);
+
+    li {
+      padding: 5px 10px;
+      text-align: left;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+}
