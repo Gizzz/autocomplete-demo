@@ -17,6 +17,7 @@
       border-radius: 3px;
       padding-left: 10px;
       padding-right: $button-width + 10px;
+      outline: none;
       box-shadow:
         0 2px 2px 0 rgba(0,0,0,0.16),
         0 0 0 1px rgba(0,0,0,0.08);
@@ -25,8 +26,8 @@
       &:hover,
       &:focus {
         box-shadow:
-        0 3px 8px 0 rgba(0,0,0,0.2),
-        0 0 0 1px rgba(0,0,0,0.08);
+          0 3px 8px 0 rgba(0,0,0,0.2),
+          0 0 0 1px rgba(0,0,0,0.08);
       }
     }
 
@@ -38,7 +39,9 @@
       border-width: 0px;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
-      background-color:rgb(221, 221, 221);
+      color: #757575;
+      background-color:#f2f2f2;
+      cursor: pointer;
     }
   }
 
@@ -49,12 +52,13 @@
     width: 584px;
     background-color: #fff;
     box-shadow:
-        0 2px 2px 0 rgba(0,0,0,0.16),
-        0 0 0 1px rgba(0,0,0,0.08);
+      0 2px 2px 0 rgba(0,0,0,0.16),
+      0 0 0 1px rgba(0,0,0,0.08);
 
     li {
       padding: 5px 10px;
       text-align: left;
+      cursor: pointer;
 
       &:hover {
         background-color: #eee;
