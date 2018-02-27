@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import Header from './components/Header';
 import SearchBarContainer from './components/SearchBarContainer';
 import SearchResultsContainer from './components/SearchResultsContainer';
 
@@ -19,7 +20,7 @@ class AppContainer extends React.Component<{}, IAppContainerState> {
   render() {
     return (
       <div className="app">
-        <h1>Doodle 4 Places</h1>
+        <Header />
         <div className="autocomplete">
           <SearchBarContainer onSearch={this.handleSearch} />
           <SearchResultsContainer term={this.state.confirmedTerm} />
