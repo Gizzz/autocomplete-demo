@@ -34,15 +34,20 @@ html {
   }
 
   .autocomplete__search-bar {
+    $button-width: 50px;
+
+    position: relative;
+    width: 584px;
+    margin: auto;
     text-align: center;
 
     input[type=text] {
-      width: 584px;
+      width: 100%;
       height: 44px;
       border-width: 0px;
       border-radius: 3px;
       padding-left: 10px;
-      padding-right: 10px;
+      padding-right: $button-width + 10px;
       box-shadow:
         0 2px 2px 0 rgba(0,0,0,0.16),
         0 0 0 1px rgba(0,0,0,0.08);
@@ -57,15 +62,34 @@ html {
     }
 
     button {
-      position: relative;
-      left: -50px;
-      width: 50px;
+      position: absolute;
+      right: 0;
+      width: $button-width;
       height: 44px;
       border-width: 0px;
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
-      background-color:rgb(221, 221, 221)
-      ;
+      background-color:rgb(221, 221, 221);
+    }
+  }
+
+  .autocomplete__search-bar__completions {
+    position: absolute;
+    left: 0;
+    top: 44px;
+    width: 584px;
+    background-color: #fff;
+    box-shadow:
+        0 2px 2px 0 rgba(0,0,0,0.16),
+        0 0 0 1px rgba(0,0,0,0.08);
+
+    li {
+      padding: 5px 10px;
+      text-align: left;
+    }
+
+    li:hover {
+      background-color: #eee;
     }
   }
 }

@@ -43,9 +43,7 @@ class SearchBar extends React.Component<ISearchBarProps, {}> {
           onKeyDown={this.handleInputKeydown}
         />
         <button onClick={this.handleSearchBtnClick}>Go!</button>
-
-        <h2>Autocomplete results:</h2>
-        <ul>
+        <ul className="autocomplete__search-bar__completions">
           {autocompleteResultsJsx}
         </ul>
       </div>
