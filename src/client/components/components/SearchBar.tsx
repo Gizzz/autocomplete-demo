@@ -33,21 +33,22 @@ class SearchBar extends React.Component<ISearchBarProps, {}> {
     }
 
     return (
-      <>
+      <div className="autocomplete__search-bar">
         <input
           type="text"
+          placeholder="Enter your query or place name"
           autoFocus={true}
           value={this.props.term}
           onChange={this.handleInputChange}
           onKeyDown={this.handleInputKeydown}
         />
-        <button onClick={this.handleSearchBtnClick}>Search!</button>
+        <button onClick={this.handleSearchBtnClick}>Go!</button>
 
         <h2>Autocomplete results:</h2>
         <ul>
           {autocompleteResultsJsx}
         </ul>
-      </>
+      </div>
     );
   }
 }

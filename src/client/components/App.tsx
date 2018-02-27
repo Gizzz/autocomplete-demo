@@ -19,9 +19,11 @@ class AppContainer extends React.Component<{}, IAppContainerState> {
   render() {
     return (
       <div className="app">
-        <h1>Autocomplete demo</h1>
-        <SearchBarContainer onSearch={this.handleSearch} />
-        <SearchResultsContainer term={this.state.confirmedTerm} />
+        <h1>Doodle 4 Places</h1>
+        <div className="autocomplete">
+          <SearchBarContainer onSearch={this.handleSearch} />
+          <SearchResultsContainer term={this.state.confirmedTerm} />
+        </div>
       </div>
     );
   }
