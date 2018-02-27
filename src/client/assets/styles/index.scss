@@ -18,16 +18,8 @@
   src: url(../fonts/Roboto-Bold.woff) format('woff');
 }
 
-/* apply a natural box layout model to all elements, but allowing components to change */
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 html {
   font-family: 'Roboto', 'Noto', sans-serif;
   font-size: 16px;
-	line-height: 1;
+  line-height: 1;
 }
