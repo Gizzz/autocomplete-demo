@@ -34,9 +34,10 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
 
   handleInputBlur = () => {
     // to prevent result loss in case when completion is clicked (input blur triggers before completion click)
+    // delay is pretty big, lower delays not seem to be stable
     setTimeout(() => {
       this.props.onResetResults();
-    }, 100);
+    }, 150);
   }
 
   handleCompletionClick = (completionValue) => {
