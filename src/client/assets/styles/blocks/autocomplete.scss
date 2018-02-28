@@ -1,6 +1,8 @@
 .autocomplete {
   $input-height: 44px;
+  
   position: relative;
+  text-align: center;
 
   &__search-bar {
     $button-width: 50px;
@@ -8,7 +10,6 @@
     position: relative;
     width: 584px;
     margin: auto;
-    text-align: center;
 
     input[type=text] {
       width: 100%;

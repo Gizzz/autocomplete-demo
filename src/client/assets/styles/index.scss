@@ -2,7 +2,8 @@
 @import '_mixins';
 
 @import 'vendor/normalize.css';
-@import 'customResets.scss';
+@import 'custom-resets';
 
-@import 'common.scss';
-@import 'blocks/autocomplete.scss';
+@import 'common';
+@import 'blocks/autocomplete';
+// @import 'blocks/search-results';
