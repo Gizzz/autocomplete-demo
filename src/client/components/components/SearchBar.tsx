@@ -41,7 +41,11 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
 
   handleCompletionClick = (completionValue) => {
     this.props.onTermChange(completionValue);
-    this.performSearch();
+
+    // to ensure that search performed after term is changed
+    setTimeout(() => {
+      this.performSearch();
+    }, 0);
   }
 
   handleSearchBtnClick = () => {
