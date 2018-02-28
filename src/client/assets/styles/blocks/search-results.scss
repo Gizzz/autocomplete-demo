@@ -1,0 +1,39 @@
+.search-results {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+
+  &__items {
+    width: 584px;
+    margin: auto;
+  }
+
+  &__items__item {
+    display: flex;
+    width: 100%;
+    border-width: 0px;
+    border-radius: 3px;
+    padding: 10px;
+    text-align: left;
+    box-shadow:
+      0 2px 2px 0 rgba(0,0,0,0.16),
+      0 0 0 1px rgba(0,0,0,0.08);
+
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+
+    &__image {
+      align-self: center;
+
+      img {
+        width: 70px;
+        height: 70px;
+      }
+    }
+
+    &__info {
+      margin-left: 20px;
+    }
+  }
+}

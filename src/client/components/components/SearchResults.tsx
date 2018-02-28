@@ -12,16 +12,23 @@ const SearchResults = ({ term, searchResults, isFetching, error }: ISearchResult
     const message = error.message ? error.message : `Something went wrong.`;
 
     return (
-      <>
-        <h2>Search results:</h2>
+      <div className="search-results">
         <p>Error: {message}</p>
-      </>
+      </div>
     );
   }
 
   const searchResultsJsx: JSX.Element[] = searchResults.map((result: any): JSX.Element => {
     return (
-      <li key={result.id}>{result.name}</li>
+      <li className="search-results__items__item" key={result.id}>
+        <div className="search-results__items__item__image">
+          <img src={result.icon} />
+        </div>
+        <div className="search-results__items__item__info">
+          <h4>{result.name}</h4>
+          <p>rating: {result.rating ? result.rating : `N/A`}</p>
+        </div>
+      </li>
     );
   });
 
@@ -29,18 +36,17 @@ const SearchResults = ({ term, searchResults, isFetching, error }: ISearchResult
   const isTermEmpty = term.trim() === ``;
 
   return (
-    <>
-      <h2>Search results:</h2>
+    <div className="search-results">
       {
         isFetching
           ? <p>Loading data...</p>
           : hasResultsToShow
-            ? <ul>{searchResultsJsx}</ul>
+            ? <ul className="search-results__items">{searchResultsJsx}</ul>
             : isTermEmpty
               ? null
-              : <p>No results.</p>
+              : <p>No places found.</p>
       }
-    </>
+    </div>
   );
 };
 
