@@ -21,10 +21,8 @@ class AppContainer extends React.Component<{}, IAppContainerState> {
     return (
       <div className="app">
         <Header />
-        <div className="autocomplete">
-          <SearchBarContainer onSearch={this.handleSearch} />
-          <SearchResultsContainer term={this.state.confirmedTerm} />
-        </div>
+        <SearchBarContainer onSearch={this.handleSearch} />
+        <SearchResultsContainer term={this.state.confirmedTerm} />
       </div>
     );
   }

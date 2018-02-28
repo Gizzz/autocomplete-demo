@@ -71,7 +71,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     }
 
     return (
-      <div className="autocomplete__search-bar">
+      <div className="search-bar">
         <input
           type="text"
           placeholder="Enter your query or place name"
@@ -82,7 +82,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
           onBlur={this.handleInputBlur}
         />
         <button onClick={this.handleSearchBtnClick}>Go!</button>
-        <ul className="autocomplete__search-bar__completions">
+        <ul className="search-bar__completions">
           {this.state.showCompletions && autocompleteResultsJsx}
         </ul>
       </div>
