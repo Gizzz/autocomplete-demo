@@ -32,6 +32,13 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     }
   }
 
+  handleInputBlur = () => {
+    // to prevent result loss in case when completion is clicked (input blur triggers before completion click)
+    setTimeout(() => {
+      this.props.onResetResults();
+    }, 100);
+  }
+
   handleCompletionClick = (completionValue) => {
     this.props.onTermChange(completionValue);
     this.performSearch();
@@ -72,6 +79,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
           value={this.props.term}
           onChange={this.handleInputChange}
           onKeyDown={this.handleInputKeydown}
+          onBlur={this.handleInputBlur}
         />
         <button onClick={this.handleSearchBtnClick}>Go!</button>
         <ul className="autocomplete__search-bar__completions">
