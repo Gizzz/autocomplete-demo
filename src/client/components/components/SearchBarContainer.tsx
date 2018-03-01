@@ -58,7 +58,7 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
   searchCompletions = () => {
     const term = this.state.term;
     // tslint:disable-next-line:max-line-length
-    const url = `/proxy/maps/api/place/queryautocomplete/json?location=-33.8670522,151.1957362&radius=50000&input=${term}`;
+    const url = `/proxy/maps/api/place/queryautocomplete/json?location=-33.8670522,151.1957362&radius=10000&input=${term}`;
 
     const currentRequestTimestamp = Date.now();
     this.setState({ lastRequestTimestamp: currentRequestTimestamp });
