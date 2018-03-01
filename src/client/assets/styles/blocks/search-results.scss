@@ -3,8 +3,19 @@
   margin-bottom: 40px;
   text-align: center;
 
-  button {
-    margin-top: 8px;
+  & > p {
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+
+  & > button {
+    margin-top: 20px;
+    padding: 9px 15px;
+    border: none;
+    border-radius: 3px;
+    color: #757575;
+    background-color: #f2f2f2;
+    cursor: pointer;
   }
 
   &__items {
