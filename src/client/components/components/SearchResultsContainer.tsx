@@ -18,19 +18,34 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
   state = this.getInitialState();
 
   componentDidMount() {
-    this.fetchResultsForTerm(this.props.term);
+    this.processTermChange(this.props.term);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.term !== this.props.term) {
-      this.fetchResultsForTerm(nextProps.term);
+      this.processTermChange(nextProps.term);
     }
   }
 
   handleLoadMore = () => {
     this.setState({ isFetching: true, error: null });
-    const url = `/proxy/maps/api/place/nearbysearch/json?pagetoken=${this.state.nextPageToken}`;
 
+    const nextPageUrl = `/proxy/maps/api/place/nearbysearch/json?pagetoken=${this.state.nextPageToken}`;
+    this.fetchResultsToState(nextPageUrl);
+  }
+
+  processTermChange(newTerm: string) {
+    this.setState({ ...this.getInitialState() });
+
+    if (newTerm.trim() === ``) { return; }
+
+    this.setState({ isFetching: true });
+    // tslint:disable-next-line:max-line-length
+    const firstPageUrl = `/proxy/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50000&keyword=${newTerm}`;
+    this.fetchResultsToState(firstPageUrl);
+  }
+
+  fetchResultsToState(url) {
     axios.get(url)
       .then((result) => {
         this.setState((prevState) => {
@@ -39,28 +54,6 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
             isFetching: false,
             nextPageToken: result.data.next_page_token ? result.data.next_page_token : null,
           };
-        });
-      })
-      .catch((error) => {
-        this.setState({ error, isFetching: false });
-        console.log(error);
-      });
-  }
-
-  fetchResultsForTerm(term: string) {
-    this.setState({ ...this.getInitialState() });
-
-    if (term.trim() === ``) { return; }
-
-    this.setState({ isFetching: true });
-    const url = `/proxy/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50000&keyword=${term}`;
-
-    axios.get(url)
-      .then((result) => {
-        this.setState({
-          searchResults: result.data.results,
-          isFetching: false,
-          nextPageToken: result.data.next_page_token ? result.data.next_page_token : null,
         });
       })
       .catch((error) => {
