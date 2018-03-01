@@ -15,12 +15,7 @@ interface ISearchResultsContainerState {
 }
 
 class SearchResultsContainer extends React.Component<ISearchResultsContainerProps, ISearchResultsContainerState> {
-  state = {
-    searchResults: [],
-    isFetching: false,
-    error: null,
-    nextPageToken: null,
-  };
+  state = this.getInitialState();
 
   componentDidMount() {
     this.fetchResultsForTerm(this.props.term);
@@ -34,7 +29,6 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
 
   handleLoadMore = () => {
     this.setState({ isFetching: true, error: null });
-
     const url = `/proxy/maps/api/place/nearbysearch/json?pagetoken=${this.state.nextPageToken}`;
 
     axios.get(url)
@@ -54,18 +48,12 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
   }
 
   fetchResultsForTerm(term: string) {
+    this.setState({ ...this.getInitialState() });
+
+    if (term.trim() === ``) { return; }
+
+    this.setState({ isFetching: true });
     const url = `/proxy/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50000&keyword=${term}`;
-
-    if (term.trim() === ``) {
-      this.setState({ searchResults: [] });
-      return;
-    }
-
-    this.setState({
-      searchResults: [],
-      isFetching: true,
-      error: null,
-    });
 
     axios.get(url)
       .then((result) => {
@@ -79,6 +67,15 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
         this.setState({ error, isFetching: false });
         console.log(error);
       });
+  }
+
+  getInitialState() {
+    return {
+      searchResults: [],
+      isFetching: false,
+      error: null,
+      nextPageToken: null,
+    };
   }
 
   render() {
