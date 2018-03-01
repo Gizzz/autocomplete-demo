@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const Header = () => (
-  <>
+  <div className="header">
     <h1>
       <span style={{ color: `#4587F1` }}>P</span>
       <span style={{ color: `#E83F3B` }}>o</span>
@@ -15,7 +15,7 @@ const Header = () => (
     <h3>
       <span style={{ color: `#bbbbbb` }}>Search Places in Sydney</span>
     </h3>
-  </>
+  </div>
 );
 
 export default Header;
