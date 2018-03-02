@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Spinner from './Spinner';
 
 interface ISearchResultsProps {
   term: string;
@@ -51,7 +52,7 @@ const SearchResults = ({
       }
       {
         isFetching && !error
-          ? <p>Loading data...</p>
+          ? <Spinner />
           : null
       }
       {
