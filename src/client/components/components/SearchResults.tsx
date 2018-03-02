@@ -33,14 +33,22 @@ const SearchResults = ({
             {
               result.rating
                 ? <ReactStars count={5} value={result.rating} size={24} edit={false} />
-                : `Rating is not available.`
+                : <p>Rating is not available.</p>
             }
           </div>
           {
             result.opening_hours && result.opening_hours.open_now
-              ? <div className="search-results__badge">Open now!</div>
+              ? <div className="search-results__badge">Open Now</div>
               : null
           }
+          <a
+            className="search-results__gmaps-link"
+            // tslint:disable-next-line:max-line-length
+            href={`https://www.google.ru/maps/place/${encodeURIComponent(result.name)}/@${result.geometry.location.lat},${result.geometry.location.lng},21z`}
+            target="blank"
+          >
+            Show on Google Maps
+          </a>
         </div>
       </li>
     );

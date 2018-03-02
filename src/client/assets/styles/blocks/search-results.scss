@@ -24,6 +24,7 @@
   }
 
   &__items__item {
+    position: relative;
     display: flex;
     width: 100%;
     border-width: 0px;
@@ -50,6 +51,13 @@
     &__info {
       margin-left: 20px;
 
+      h4 {
+        max-width: 470px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
       .search-results__rating {
         margin-top: 5px;
       }
@@ -61,9 +69,16 @@
         padding: 5px;
         border-radius: 5px;
         border: none;
-        text-transform: uppercase;
         font-size: 13px;
         color: white;
+      }
+
+      .search-results__gmaps-link {
+        position: absolute;
+        right: 15px;
+        bottom: 13px;
+        color: #4888EE;
+        font-size: 13px;
       }
     }
   }
