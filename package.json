@@ -26,7 +26,8 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-stars": "^2.2.5"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",

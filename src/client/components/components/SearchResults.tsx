@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import ReactStars from 'react-stars';
 import Spinner from './Spinner';
 
 interface ISearchResultsProps {
@@ -27,7 +29,13 @@ const SearchResults = ({
         </div>
         <div className="search-results__items__item__info">
           <h4>{result.name}</h4>
-          <p>rating: {result.rating ? result.rating : `N/A`}</p>
+          <div className="search-results__rating">
+            {
+              result.rating
+                ? <ReactStars count={5} value={result.rating} size={24} edit={false} />
+                : `Rating is not available.`
+            }
+          </div>
         </div>
       </li>
     );

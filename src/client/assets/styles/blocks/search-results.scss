@@ -49,6 +49,10 @@
 
     &__info {
       margin-left: 20px;
+
+      .search-results__rating {
+        margin-top: 7px;
+      }
     }
   }
 }
