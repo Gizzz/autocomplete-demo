@@ -43,6 +43,7 @@
 
   &__completions {
     position: absolute;
+    z-index: 10;
     left: 0;
     top: $input-height;
     width: 584px;
