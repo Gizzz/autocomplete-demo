@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import ReactStars from 'react-stars';
+import ResultEntry from './ResultEntry';
 import Spinner from './Spinner';
 
 interface ISearchResultsProps {
@@ -22,36 +22,7 @@ const SearchResults = ({
     : `Something went wrong.`;
 
   const searchResultsJsx: JSX.Element[] = searchResults.map((result: any): JSX.Element => {
-    return (
-      <li className="search-results__items__item" key={result.id}>
-        <div className="search-results__items__item__image">
-          <img src={result.icon} />
-        </div>
-        <div className="search-results__items__item__info">
-          <h4>{result.name}</h4>
-          <div className="search-results__rating">
-            {
-              result.rating
-                ? <ReactStars count={5} value={result.rating} size={24} edit={false} />
-                : <p>Rating is not available.</p>
-            }
-          </div>
-          {
-            result.opening_hours && result.opening_hours.open_now
-              ? <div className="search-results__badge">Open Now</div>
-              : null
-          }
-          <a
-            className="search-results__gmaps-link"
-            // tslint:disable-next-line:max-line-length
-            href={`https://www.google.ru/maps/place/${encodeURIComponent(result.name)}/@${result.geometry.location.lat},${result.geometry.location.lng},21z`}
-            target="blank"
-          >
-            Show on Google Maps
-          </a>
-        </div>
-      </li>
-    );
+    return <ResultEntry entry={result} key={result.id} />;
   });
 
   const hasResultsToShow = searchResultsJsx.length > 0;

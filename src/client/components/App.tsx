@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import Header from './components/Header';
 import SearchBarContainer from './components/SearchBarContainer';
-import SearchResultsContainer from './components/SearchResultsContainer';
+import SearchResultsContainer from './components/SearchResults/SearchResultsContainer';
 
 interface IAppContainerState {
   confirmedTerm: string;
