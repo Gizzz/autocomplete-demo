@@ -36,6 +36,11 @@ const SearchResults = ({
                 : `Rating is not available.`
             }
           </div>
+          {
+            result.opening_hours && result.opening_hours.open_now
+              ? <div className="search-results__badge">Open now!</div>
+              : null
+          }
         </div>
       </li>
     );
