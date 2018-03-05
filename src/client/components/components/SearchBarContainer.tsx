@@ -12,14 +12,14 @@ interface ISearchBarContainerProps {
 
 interface ISearchBarContainerState {
   term: string;
-  autocompleteResults: any[];
+  completionResults: any[];
   lastRequestTimestamp: number;
 }
 
 class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISearchBarContainerState> {
   state = {
     term: ``,
-    autocompleteResults: [],
+    completionResults: [],
     lastRequestTimestamp: 0,
   };
 
@@ -44,13 +44,15 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
   }
 
   handleSearch = () => {
+    this.searchCompletions_debounced.cancel();
+    this.resetCompletionResults();
+
     this.props.onSearch(this.state.term);
-    this.resetAutocompleteResults();
   }
 
-  resetAutocompleteResults = () => {
+  resetCompletionResults = () => {
     this.setState({
-      autocompleteResults: [],
+      completionResults: [],
       lastRequestTimestamp: Date.now(),
     });
   }
@@ -65,7 +67,7 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
 
     // empty check is placed after the timestapm to prevent pending request to overwrite its result
     if (term.trim() === ``) {
-      this.setState({ autocompleteResults: [] });
+      this.setState({ completionResults: [] });
       return;
     }
 
@@ -73,7 +75,7 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
       .then((result) => {
         if (this.state.lastRequestTimestamp !== currentRequestTimestamp) { return; }
 
-        this.setState({ autocompleteResults: result.data.predictions });
+        this.setState({ completionResults: result.data.predictions });
       })
       .catch(console.log);
   }
@@ -82,10 +84,10 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
     return (
       <SearchBar
         term={this.state.term}
-        autocompleteResults={this.state.autocompleteResults}
+        completionResults={this.state.completionResults}
         onTermChange={this.handleTermChange}
         onSearch={this.handleSearch}
-        onResetResults={this.resetAutocompleteResults}
+        onResetCompletionResults={this.resetCompletionResults}
       />
     );
   }

@@ -2,33 +2,31 @@ import * as React from 'react';
 
 interface ISearchBarProps {
   term: string;
-  autocompleteResults: any[];
+  completionResults: any[];
   onTermChange: (newTerm: string) => void;
   onSearch: () => void;
-  onResetResults: () => void;
+  onResetCompletionResults: () => void;
 }
 
-interface ISearchBarState {
-  showCompletions: boolean;
-}
+// interface ISearchBarState {
+//   showCompletions: boolean;
+// }
 
-class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
-  state = { showCompletions: true };
+class SearchBar extends React.Component<ISearchBarProps, {}> {
+  // state = { showCompletions: true };
 
   handleInputChange = (e) => {
     this.props.onTermChange(e.target.value);
   }
 
   handleInputKeydown = (e) => {
-    const isEnterPressed = e.nativeEvent.key.toLowerCase() === `enter`;
-    const isEscapePressed = e.nativeEvent.key.toLowerCase() === `escape`;
+    const isEnterPressed = e.key === `Enter`;
+    const isEscapePressed = e.key === `Escape`;
 
     if (isEnterPressed) {
       this.performSearch();
     } else if (isEscapePressed) {
-      this.props.onResetResults();
-    } else {
-      this.setState({ showCompletions: true });
+      this.props.onResetCompletionResults();
     }
   }
 
@@ -36,7 +34,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     // to prevent result loss in case when completion is clicked (input blur triggers before completion click)
     // delay is pretty big, lower delays not seem to be stable
     setTimeout(() => {
-      this.props.onResetResults();
+      this.props.onResetCompletionResults();
     }, 150);
   }
 
@@ -54,15 +52,15 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
   }
 
   performSearch = () => {
-    this.setState({ showCompletions: false });
+    this.props.onResetCompletionResults();
     this.props.onSearch();
   }
 
   render() {
-    let autocompleteResultsJsx: JSX.Element[] | null = null;
+    let completionResultsJsx: JSX.Element[] | null = null;
 
-    if (this.props.autocompleteResults.length !== 0) {
-      autocompleteResultsJsx = this.props.autocompleteResults.map((result: any): JSX.Element => {
+    if (this.props.completionResults.length !== 0) {
+      completionResultsJsx = this.props.completionResults.map((result: any): JSX.Element => {
         return (
           <li
             key={result.description}
@@ -88,7 +86,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
         />
         <button onClick={this.handleSearchBtnClick}>Go!</button>
         <ul className="search-bar__completions">
-          {this.state.showCompletions && autocompleteResultsJsx}
+          {completionResultsJsx}
         </ul>
       </div>
     );
