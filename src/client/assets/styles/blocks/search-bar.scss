@@ -57,6 +57,7 @@
       text-align: left;
       cursor: pointer;
 
+      &.active,
       &:hover {
         background-color: #eee;
       }
