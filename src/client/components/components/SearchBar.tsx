@@ -67,6 +67,14 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     }, 0);
   }
 
+  handleCompletionMouseEnter = (selectedCompletionIndex) => {
+    this.setState({ selectedCompletionIndex });
+  }
+
+  handleCompletionMouseLeave = () => {
+    this.setState({ selectedCompletionIndex: null });
+  }
+
   handleSearchBtnClick = () => {
     this.performSearch();
   }
@@ -117,6 +125,9 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
             key={result.description}
             // tslint:disable-next-line:jsx-no-lambda
             onClick={() => { this.handleCompletionClick(result.description); }}
+            // tslint:disable-next-line:jsx-no-lambda
+            onMouseEnter={() => { this.handleCompletionMouseEnter(index); }}
+            onMouseLeave={this.handleCompletionMouseLeave}
           >
             {result.description}
           </li>
