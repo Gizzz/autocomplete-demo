@@ -10,55 +10,74 @@ interface ISearchBarProps {
 
 interface ISearchBarState {
   selectedCompletionIndex: number | null;
+  completionIsHovered: boolean;
 }
 
 class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
-  state = { selectedCompletionIndex: null };
+  state = {
+    selectedCompletionIndex: null,
+    completionIsHovered: false,
+  };
 
   handleInputChange = (e) => {
     this.props.onTermChange(e.target.value);
   }
 
   handleInputKeydown = (e) => {
-    const isEnterPressed = e.key === `Enter`;
-    const isEscapePressed = e.key === `Escape`;
-    const isArrowUpPressed = e.key === `ArrowUp`;
-    const isArrowDownPressed = e.key === `ArrowDown`;
-
-    if (isEnterPressed) {
-      const selectedCompletionIndex = this.state.selectedCompletionIndex;
-
-      if (selectedCompletionIndex === null) {
-        this.performSearch();
-        return;
-      }
-
-      const completionValue = this.props.completionResults[selectedCompletionIndex as any].description;
-      this.props.onTermChange(completionValue);
-
-      // to ensure that search is performed after term is changed
-      setTimeout(() => {
-        this.performSearch();
-      }, 0);
-    } else if (isEscapePressed) {
-      this.setState({ selectedCompletionIndex: null });
-      this.props.onResetCompletionResults();
-    } else if (isArrowUpPressed || isArrowDownPressed) {
-      this.processArrowUpOrDown(e);
+    switch (e.key) {
+      case `Enter`:
+        this.processInputEnter();
+        break;
+      case `ArrowUp`:
+      case `ArrowDown`:
+        this.processInputArrowUpOrDown(e);
+        break;
+      case `Escape`:
+        this.clearCompletionSelection();
+        this.props.onResetCompletionResults();
+        break;
+      default:
+        break;
     }
   }
 
   handleInputBlur = () => {
-    this.setState({ selectedCompletionIndex: null });
+    const selectedCompletionIndex = this.state.selectedCompletionIndex;
+    const isCompletionClicked = this.state.selectedCompletionIndex !== null && this.state.completionIsHovered;
 
-    // to prevent result loss in case when completion is clicked (input blur triggers before completion click)
-    // delay is pretty big, lower delays not seem to be stable
-    setTimeout(() => {
+    if (isCompletionClicked) {
+      const completionValue = this.props.completionResults[selectedCompletionIndex as any].description;
+      this.processCompletionClick(completionValue);
+    } else {
+      this.clearCompletionSelection();
       this.props.onResetCompletionResults();
-    }, 150);
+    }
   }
 
-  handleCompletionClick = (completionValue) => {
+  handleCompletionMouseEnter = (selectedCompletionIndex) => {
+    this.setState({
+      selectedCompletionIndex,
+      completionIsHovered: true,
+    });
+  }
+
+  handleCompletionMouseLeave = () => {
+    this.clearCompletionSelection();
+  }
+
+  handleSearchBtnClick = () => {
+    this.performSearch();
+  }
+
+  processInputEnter = () => {
+    const selectedCompletionIndex = this.state.selectedCompletionIndex;
+
+    if (selectedCompletionIndex === null) {
+      this.performSearch();
+      return;
+    }
+
+    const completionValue = this.props.completionResults[selectedCompletionIndex as any].description;
     this.props.onTermChange(completionValue);
 
     // to ensure that search is performed after term is changed
@@ -67,19 +86,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     }, 0);
   }
 
-  handleCompletionMouseEnter = (selectedCompletionIndex) => {
-    this.setState({ selectedCompletionIndex });
-  }
-
-  handleCompletionMouseLeave = () => {
-    this.setState({ selectedCompletionIndex: null });
-  }
-
-  handleSearchBtnClick = () => {
-    this.performSearch();
-  }
-
-  processArrowUpOrDown = (e) => {
+  processInputArrowUpOrDown = (e) => {
     e.preventDefault();
 
     const isCompletionResultsEmpty = this.props.completionResults.length === 0;
@@ -97,6 +104,8 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
           ? this.state.selectedCompletionIndex
           : (this.state.selectedCompletionIndex as any) + 1;
     } else {
+      // else ArrorUp is pressed
+
       newSelectedCompletionIndex = this.state.selectedCompletionIndex === null
         ? null
         : this.state.selectedCompletionIndex === 0
@@ -107,11 +116,26 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     this.setState({ selectedCompletionIndex: newSelectedCompletionIndex });
   }
 
-  performSearch = () => {
-    this.setState({ selectedCompletionIndex: null });
+  processCompletionClick = (completionValue) => {
+    this.props.onTermChange(completionValue);
 
+    // to ensure that search is performed after term is changed
+    setTimeout(() => {
+      this.performSearch();
+    }, 0);
+  }
+
+  performSearch = () => {
+    this.clearCompletionSelection();
     this.props.onResetCompletionResults();
     this.props.onSearch();
+  }
+
+  clearCompletionSelection = () => {
+    this.setState({
+      selectedCompletionIndex: null,
+      completionIsHovered: false,
+    });
   }
 
   render() {
@@ -123,8 +147,6 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
           <li
             className={index === this.state.selectedCompletionIndex ? `active` : ``}
             key={result.description}
-            // tslint:disable-next-line:jsx-no-lambda
-            onClick={() => { this.handleCompletionClick(result.description); }}
             // tslint:disable-next-line:jsx-no-lambda
             onMouseEnter={() => { this.handleCompletionMouseEnter(index); }}
             onMouseLeave={this.handleCompletionMouseLeave}
