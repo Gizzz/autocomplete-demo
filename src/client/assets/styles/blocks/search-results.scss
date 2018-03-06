@@ -52,10 +52,7 @@
       margin-left: 20px;
 
       h4 {
-        max-width: 470px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        @include truncate-text(470px);
       }
 
       .search-results__rating {
