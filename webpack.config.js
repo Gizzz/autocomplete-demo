@@ -1,9 +1,11 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 module.exports = {
   entry: './src/client/index.tsx',
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/dist',
-    publicPath: '/',
+    path: __dirname + '/dist/generated',
+    publicPath: '/generated/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json']
@@ -26,6 +28,9 @@ module.exports = {
       },
     ]
   },
+  plugins: [
+    new CleanWebpackPlugin(['dist/generated']),
+  ],
   devtool: 'source-map',
   devServer: {
     contentBase: __dirname + '/dist',

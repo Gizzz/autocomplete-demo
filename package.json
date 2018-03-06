@@ -37,6 +37,7 @@
     "@types/lodash.debounce": "^4.0.3",
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.4",
+    "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.10",
     "file-loader": "^1.1.9",
     "node-sass": "^4.7.2",
