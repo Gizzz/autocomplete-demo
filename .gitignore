@@ -4,4 +4,3 @@ dist/generated/
 
 project_todo.txt
 .env
-dist/bundle*
