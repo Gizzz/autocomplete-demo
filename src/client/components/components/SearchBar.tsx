@@ -69,7 +69,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     this.performSearch();
   }
 
-  processInputEnter = () => {
+  processInputEnter() {
     const selectedCompletionIndex = this.state.selectedCompletionIndex;
 
     if (selectedCompletionIndex === null) {
@@ -86,7 +86,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     }, 0);
   }
 
-  processInputArrowUpOrDown = (e) => {
+  processInputArrowUpOrDown(e) {
     e.preventDefault();
 
     const isCompletionResultsEmpty = this.props.completionResults.length === 0;
@@ -116,7 +116,7 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     this.setState({ selectedCompletionIndex: newSelectedCompletionIndex });
   }
 
-  processCompletionClick = (completionValue) => {
+  processCompletionClick(completionValue) {
     this.props.onTermChange(completionValue);
 
     // to ensure that search is performed after term is changed
@@ -125,13 +125,13 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
     }, 0);
   }
 
-  performSearch = () => {
+  performSearch() {
     this.clearCompletionSelection();
     this.props.onResetCompletionResults();
     this.props.onSearch();
   }
 
-  clearCompletionSelection = () => {
+  clearCompletionSelection() {
     this.setState({
       selectedCompletionIndex: null,
       completionIsHovered: false,
