@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 
-import baseUrl from '../../../utils/baseUrl';
+import { getBaseUrl } from '../../../utils/urlHelper';
 import SearchResults from './SearchResults';
 
 interface ISearchResultsContainerProps {
@@ -31,7 +31,7 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
   handleLoadMore = () => {
     this.setState({ isFetching: true, error: null });
 
-    const nextPageUrl = `${baseUrl}/proxy/maps/api/place/nearbysearch/json?pagetoken=${this.state.nextPageToken}`;
+    const nextPageUrl = getBaseUrl() + `/proxy/maps/api/place/nearbysearch/json?pagetoken=${this.state.nextPageToken}`;
     this.fetchResultsToState(nextPageUrl);
   }
 
@@ -42,7 +42,7 @@ class SearchResultsContainer extends React.Component<ISearchResultsContainerProp
 
     this.setState({ isFetching: true });
     // tslint:disable-next-line:max-line-length
-    const firstPageUrl = `${baseUrl}/proxy/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50000&keyword=${newTerm}`;
+    const firstPageUrl = getBaseUrl() + `/proxy/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50000&keyword=${newTerm}`;
     this.fetchResultsToState(firstPageUrl);
   }
 
