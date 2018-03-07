@@ -22,15 +22,15 @@ app.get('/proxy*', (req, res) => {
 
   axios.get(forwardedUrlWithKey)
     .then((result) => {
-      res
-        .status(result.status)
-        .send(result.data);
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.status(result.status).send(result.data);
 
       logResponse(`success`, result, forwardedUrlWithKey);
     })
     .catch((error) => {
       const serializedError = circularJSON.stringify(error);
 
+      res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Content-Type', 'application/json');
       res.status(error.response.status).send(serializedError);
 
