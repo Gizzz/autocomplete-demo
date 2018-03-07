@@ -139,23 +139,19 @@ class SearchBar extends React.Component<ISearchBarProps, ISearchBarState> {
   }
 
   render() {
-    let completionResultsJsx: JSX.Element[] | null = null;
-
-    if (this.props.completionResults.length !== 0) {
-      completionResultsJsx = this.props.completionResults.map((result: any, index): JSX.Element => {
-        return (
-          <li
-            className={index === this.state.selectedCompletionIndex ? `active` : ``}
-            key={result.description}
-            // tslint:disable-next-line:jsx-no-lambda
-            onMouseEnter={() => { this.handleCompletionMouseEnter(index); }}
-            onMouseLeave={this.handleCompletionMouseLeave}
-          >
-            {result.description}
-          </li>
-        );
-      });
-    }
+    const completionResultsJsx = this.props.completionResults.map((result, index) => {
+      return (
+        <li
+          className={index === this.state.selectedCompletionIndex ? `active` : ``}
+          key={result.description}
+          // tslint:disable-next-line:jsx-no-lambda
+          onMouseEnter={() => { this.handleCompletionMouseEnter(index); }}
+          onMouseLeave={this.handleCompletionMouseLeave}
+        >
+          {result.description}
+        </li>
+      );
+    });
 
     return (
       <div className="search-bar">
