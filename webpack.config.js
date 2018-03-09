@@ -12,19 +12,20 @@ module.exports = {
   },
   module: {
     rules: [
-      // enable this if have some trouble with debugging typescript
-      // { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
       {
         test: /\.tsx?$/,
         loader: 'ts-loader',
       },
       {
         test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.woff$/,
-        loader: 'file-loader',
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { url: false }
+          },
+          'sass-loader'
+        ],
       },
     ]
   },
