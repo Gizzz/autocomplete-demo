@@ -2,6 +2,7 @@
  * Target API server (Google Places API) doesn't suppor CORS, so we need a proxy.
  */
 
+import * as path from 'path';
 import * as express from 'express';
 import * as dotenv from 'dotenv';
 import * as circularJSON from 'circular-json';
@@ -15,6 +16,16 @@ const key = process.env.GOOGLE_PLACES_API_KEY;
 const serviceUrl = 'https://maps.googleapis.com';
 
 const app = express();
+
+// middlewares
+
+app.use(
+  express.static(
+    path.resolve(__dirname, '../../dist'),
+  ),
+);
+
+// routes
 
 app.get('/proxy*', (req, res) => {
   const urlToForward = req.url.substr('/proxy'.length);
@@ -37,6 +48,14 @@ app.get('/proxy*', (req, res) => {
       logResponse(`error`, error, forwardedUrlWithKey);
     });
 });
+
+app.get('/*', (req, res) => {
+  res.sendFile(
+    path.resolve(__dirname, '../../dist/index.html'),
+  );
+});
+
+// init port and start the proxy
 
 app.set('port', (process.env.PORT || 9000));
 app.listen(app.get('port'), () => {
