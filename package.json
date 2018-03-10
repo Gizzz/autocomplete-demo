@@ -15,10 +15,13 @@
     "build-dev": "webpack --env.stage=development",
     "build-prod": "webpack --env.stage=production",
     "heroku-postbuild": "npm run build-prod",
+    "publish": "git push heroku master",
+    "start": "npm run proxy",
+
     "dev": "webpack-dev-server --config webpack.config.js --progress",
     "proxy": "ts-node --project proxy.tsconfig.json src/proxy/index.ts",
+
     "lint": "tslint -c tslint.json 'src/**/*.ts*'",
-    "start": "npm run proxy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "pre-commit": [
