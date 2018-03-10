@@ -18,7 +18,7 @@
     "publish": "git push heroku master",
     "start": "npm run proxy",
 
-    "dev": "webpack-dev-server --config webpack.config.js --progress",
+    "dev": "webpack-dev-server --config webpack.config.js --env.stage=development --progress",
     "proxy": "ts-node --project proxy.tsconfig.json src/proxy/index.ts",
 
     "lint": "tslint -c tslint.json 'src/**/*.ts*'",
