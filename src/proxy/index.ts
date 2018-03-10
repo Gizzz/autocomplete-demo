@@ -4,6 +4,8 @@
 
 import * as path from 'path';
 import * as express from 'express';
+import * as compression from 'compression';
+
 import * as dotenv from 'dotenv';
 import * as circularJSON from 'circular-json';
 import axios from 'axios';
@@ -18,6 +20,8 @@ const serviceUrl = 'https://maps.googleapis.com';
 const app = express();
 
 // middlewares
+
+app.use(compression());
 
 app.use(
   express.static(
