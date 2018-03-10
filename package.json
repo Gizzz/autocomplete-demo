@@ -12,8 +12,9 @@
     "npm": "5.4.2"
   },
   "scripts": {
-    "build": "webpack",
-    "heroku-postbuild": "npm run build",
+    "build-dev": "webpack --env.stage=development",
+    "build-prod": "webpack --env.stage=production",
+    "heroku-postbuild": "npm run build-prod",
     "dev": "webpack-dev-server --config webpack.config.js --progress",
     "proxy": "ts-node --project proxy.tsconfig.json src/proxy/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts*'",
@@ -58,6 +59,7 @@
     "tslint": "^5.9.1",
     "tslint-react": "^3.5.1",
     "typescript": "^2.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   }
