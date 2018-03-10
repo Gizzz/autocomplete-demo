@@ -16,11 +16,9 @@
     "build-prod": "webpack --env.stage=production",
     "heroku-postbuild": "npm run build-prod",
     "publish": "git push heroku master",
-    "start": "npm run proxy",
-
+    "start": "cross-env NODE_ENV=production npm run proxy",
     "dev": "webpack-dev-server --config webpack.config.js --env.stage=development --progress",
     "proxy": "ts-node --project proxy.tsconfig.json src/proxy/index.ts",
-
     "lint": "tslint -c tslint.json 'src/**/*.ts*'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -50,6 +48,7 @@
     "@types/react": "^16.0.38",
     "@types/react-dom": "^16.0.4",
     "clean-webpack-plugin": "^0.1.18",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.10",
     "file-loader": "^1.1.9",
     "node-sass": "^4.7.2",
