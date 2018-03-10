@@ -59,7 +59,7 @@ app.get('/*', (req, res) => {
   );
 });
 
-// init port and start the proxy
+// set port and start the proxy
 
 app.set('port', (process.env.PORT || 9000));
 app.listen(app.get('port'), () => {
