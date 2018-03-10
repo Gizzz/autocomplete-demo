@@ -10,6 +10,8 @@
   width: $content-width;
   margin: auto;
   margin-top: 15px;
+  margin-bottom: 72px;
+  // ^^^ margin bottom is set to prevent scroll jump in case when error ui is shown
 
   .loader {
     position: relative;
