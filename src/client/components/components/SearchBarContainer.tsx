@@ -28,7 +28,7 @@ class SearchBarContainer extends React.Component<ISearchBarContainerProps, ISear
   constructor(props) {
     super(props);
 
-    const debounceTimeout = 500;
+    const debounceTimeout = 250;
     this.searchCompletions_debounced = debounce(this.searchCompletions, debounceTimeout);
   }
 
