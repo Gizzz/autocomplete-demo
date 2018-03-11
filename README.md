@@ -3,7 +3,8 @@
 Tech demo of autocomplete (custom client for Google Places API).  
 Live version: https://powerful-savannah-11659.herokuapp.com/
   
-The idea was to create Google-like autocomplete experience. The app uses Google Places API (Web Service) to get data from. It doesn't support CORS, so I wrote tiny proxy server to overcome this limitation.
+The idea was to create Google-like autocomplete experience. This app is made for educational purposes and non-commercial, so please don't sue me Google 🙏😅  
+The app uses [Google Places API (Web Service)](https://developers.google.com/places/web-service/intro) to get data from.  It doesn't support CORS and can't be accessed directly from client, so I wrote tiny proxy server to overcome this limitation.
 
 ## Features
 
