@@ -40,19 +40,21 @@
     }
 
     &__image {
-      align-self: center;
+      width: 70px;
 
       img {
-        width: 70px;
-        height: 70px;
+        width: 100%;
+        height: auto;
       }
     }
 
     &__info {
+      // calc(100% - image_width - margin_left);
+      width: calc(100% - 70px - 20px);
       margin-left: 20px;
 
       h4 {
-        @include truncate-text(470px);
+        @include truncate-text(100%);
       }
 
       .search-results__rating {
