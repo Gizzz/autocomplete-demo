@@ -1,6 +1,6 @@
 # autocomplete-demo
 
-Tech demo of autocomplete (custom client for Google Places API).  
+Tech demo of autocomplete (client for Google Places API).  
 Live version: https://powerful-savannah-11659.herokuapp.com/
   
 The idea was to create Google-like autocomplete experience. This app is made for educational purposes and non-commercial, so please don't sue me Google 🙏😅  
