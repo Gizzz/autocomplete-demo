@@ -4,3 +4,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+$content-width: 584px;
+
+@mixin width-max_width($width, $max-width: $content-width) {
+  width: $width;
+  max-width: $max-width;
+}

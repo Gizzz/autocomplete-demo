@@ -2,8 +2,9 @@
   $button-width: 50px;
   $input-height: 44px;
 
+  @include width-max_width(90%);
+
   position: relative;
-  width: $content-width;
   margin: auto;
   text-align: center;
 
@@ -42,11 +43,12 @@
   }
 
   &__completions {
+    @include width-max_width(100%);
+
     position: absolute;
     z-index: 10;
     left: 0;
     top: $input-height;
-    width: $content-width;
     background-color: #fff;
     box-shadow:
       0 3px 8px 0 rgba(0,0,0,0.2),

@@ -19,7 +19,7 @@
   }
 
   &__items {
-    width: $content-width;
+    @include width-max_width(90%);
     margin: auto;
   }
 

@@ -7,7 +7,8 @@
   // scaling... any units
   $width: 60px;
 
-  width: $content-width;
+  @include width-max_width(90%);
+  
   margin: auto;
   margin-top: 15px;
   margin-bottom: 72px;
