@@ -31,6 +31,10 @@ Install dependencies:
 npm install
 ```
 
+### API key
+
+Proxy server needs API key to be provided to use the Google Places API. It expects the key to be passed as enviroment variable named as GOOGLE_PLACES_API_KEY. You can use .env file as well. Read more about how to get the API key [here](https://developers.google.com/places/web-service/get-api-key). 
+
 ### development scripts
 
 - `proxy` - start proxy server (backend side)
