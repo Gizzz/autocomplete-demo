@@ -13,7 +13,7 @@ The idea was to create Google-like autocomplete experience. The app uses [Google
 - stale requests cancellation to make result sets ordering independent from network delays
 - autocomplete suggestions selection form keyboard (arrow navigation, select on enter)
 - loading of more search results on demand
-- responsive web desing (360px and larger devices)
+- responsive web desing
 
 ## Tech Stack
 

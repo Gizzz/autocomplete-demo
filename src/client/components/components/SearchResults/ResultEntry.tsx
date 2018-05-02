@@ -31,7 +31,8 @@ const ResultEntry = ({ entry }: IResultEntryProps) => {
             href={`https://www.google.ru/maps/place/${encodeURIComponent(entry.name)}/@${entry.geometry.location.lat},${entry.geometry.location.lng},21z`}
             target="blank"
           >
-            Show on Google Maps
+            <i className="search-results__ext-link-icon" />
+            Details
           </a>
         </div>
       </li>

@@ -78,6 +78,17 @@
         bottom: 13px;
         color: #4888EE;
         font-size: 13px;
+
+        .search-results__ext-link-icon {
+          position: relative;
+          right: 2px;
+          top: 2px;
+          display: inline-block;
+          width: 13px;
+          height: 13px;
+          background: url(/img/icon-external-link.svg) no-repeat 50% 50%;
+          background-size: 13px 13px;
+        }
       }
     }
   }
